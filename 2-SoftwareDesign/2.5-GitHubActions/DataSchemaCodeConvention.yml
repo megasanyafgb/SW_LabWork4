@@ -2,7 +2,7 @@ name: Data Schema Code Convention
 
 on:
   push:
-    branches: [ LW4, laboratory-work-4 ]
+    branches: [ laboratory-work-4, LW4 ]
   workflow_dispatch:
 
 jobs:

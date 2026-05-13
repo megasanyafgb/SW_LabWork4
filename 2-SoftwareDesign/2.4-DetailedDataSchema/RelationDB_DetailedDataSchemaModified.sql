@@ -1,19 +1,22 @@
 -- Detailed Data Schema for Relational Database
 -- Example schema with Users and Posts tables
 
-CREATE TABLE Users (
-user_id INT PRIMARY KEY,
-username VARCHAR(30) NOT NULL UNIQUE,
-email VARCHAR(255) NOT NULL CHECK (email REGEXP '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'),
-phone VARCHAR(20) CHECK (phone REGEXP '^\+?[0-9]{10,15}$'),
-created_at DATE NOT NULL
+create table users (
+user_id     number primary key,
+username    varchar(30) not null unique,
+email       varchar(255) not null,
+phone       varchar(20),
+created_at  timestamp not null
 )
 
-CREATE TABLE Posts (
-post_id INT PRIMARY KEY,
-user_id INT,
-title VARCHAR(100) NOT NULL,
-content TEXT,
-published_at TIMESTAMP,
-FOREIGN KEY (user_id) REFERENCES Users(user_id)
+create table posts (
+post_id      number primary key,
+user_id      number,
+title        varchar(100) not null,
+content      varchar(4000),
+published_at timestamp,
+constraint fk_posts_users 
+    foreign key (user_id) references users(user_id),
+constraint chk_email_format 
+    check (regexp_like(email, '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'))
 )

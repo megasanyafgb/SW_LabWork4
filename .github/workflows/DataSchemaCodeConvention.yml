@@ -14,6 +14,6 @@ jobs:
 
       - name: Run SQLFluff Linter
         run: |
-          pip install sqlfluff
+          python3 -m pip install sqlfluff
           echo "=== SQL Linter Results ==="
-          sqlfluff lint $GITHUB_WORKSPACE/2-SoftwareDesign/2.4-DetailedDataSchema/RelationDB_DetailedDataSchema.sql --dialect oracle
+          python3 -m sqlfluff lint "$GITHUB_WORKSPACE/2-SoftwareDesign/2.4-DetailedDataSchema/RelationDB_DetailedDataSchema.sql" --dialect oracle

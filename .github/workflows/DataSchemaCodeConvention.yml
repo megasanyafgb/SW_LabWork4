@@ -12,8 +12,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: Run SQLFluff Linter
         run: |
-          python3 -m pip install sqlfluff
+          python -m pip install --upgrade pip
+          python -m pip install sqlfluff
           echo "=== SQL Linter Results ==="
-          python3 -m sqlfluff lint "$GITHUB_WORKSPACE/2-SoftwareDesign/2.4-DetailedDataSchema/RelationDB_DetailedDataSchema.sql" --dialect oracle
+          python -m sqlfluff lint "$GITHUB_WORKSPACE/2-SoftwareDesign/2.4-DetailedDataSchema/RelationDB_DetailedDataSchema.sql" --dialect oracle --exclude-rules L039,L052

@@ -13,6 +13,12 @@ CREATE TABLE posts (
     content      VARCHAR(4000),
     published_at TIMESTAMP,
     CONSTRAINT fk_posts_users FOREIGN KEY (user_id) REFERENCES users(user_id),
-    CONSTRAINT chk_email_format CHECK (REGEXP_LIKE(email, '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,}$'))
+    CONSTRAINT chk_email_format CHECK (
+        REGEXP_LIKE(
+            email,
+            '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,}$'
+        )
+    )
 );
+
 

@@ -2,7 +2,8 @@ name: Data Schema Code Convention
 
 on:
   push:
-    branches: [ LW4 ]
+    branches: [ LW4, laboratory-work-4 ]
+  workflow_dispatch:
 
 jobs:
   sql_linter:

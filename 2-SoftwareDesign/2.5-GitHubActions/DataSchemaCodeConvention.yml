@@ -2,14 +2,16 @@ name: Data Schema Code Convention
 
 on:
   push:
-    branches: [ laboratory-work-4, LW4 ]
+    branches: [ laboratory-work-4 ]
+  pull_request:
+    branches: [ laboratory-work-4 ]
   workflow_dispatch:
 
 jobs:
-  sql_linter:
+  SQLLint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -17,9 +19,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Run SQLFluff Linter
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install sqlfluff
-          echo "=== SQL Linter Results ==="
-          python -m sqlfluff lint "$GITHUB_WORKSPACE/2-SoftwareDesign/2.4-DetailedDataSchema/RelationDB_DetailedDataSchema.sql" --dialect oracle --exclude-rules L039,L052
+      - name: Install SQLFluff
+        run: python -m pip install sqlfluff
+
+      - name: Lint SQL schema
+        run: python -m sqlfluff lint "$GITHUB_WORKSPACE/2-SoftwareDesign/2.4-DetailedDataSchema/RelationDB_DetailedDataSchema.sql" --dialect oracle --exclude-rules L039,L052

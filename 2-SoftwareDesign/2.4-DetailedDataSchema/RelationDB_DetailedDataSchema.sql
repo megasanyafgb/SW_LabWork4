@@ -5,7 +5,6 @@ CREATE TABLE users (
     phone       VARCHAR(20),
     created_at  TIMESTAMP NOT NULL
 );
-
 CREATE TABLE posts (
     post_id      NUMBER PRIMARY KEY,
     user_id      NUMBER,
@@ -20,5 +19,4 @@ CREATE TABLE posts (
         )
     )
 );
-
 

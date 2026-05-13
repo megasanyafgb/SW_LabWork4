@@ -1,6 +1,3 @@
--- Detailed Data Schema for Relational Database
--- Example schema with Users and Posts tables
-
 CREATE TABLE users (
     user_id     NUMBER PRIMARY KEY,
     username    VARCHAR(30) NOT NULL UNIQUE,
